@@ -6,7 +6,24 @@
         xmlns:local="clr-namespace:GameBook.App"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    
     <Grid>
-
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+        <ListView x:Name="ListGames"
+                  Grid.Column="0">
+                  
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Name}">Game</GridViewColumn>
+                </GridView>
+            </ListView.View>
+            
+        </ListView>
+        
     </Grid>
 </Window>

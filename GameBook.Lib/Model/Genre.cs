@@ -1,9 +1,8 @@
 ﻿namespace GameBook.Lib.Model
 {
-    public record Game
+    public record Genre
     {
         public int Id { get; init; }
         public string Name { get; set; }
-        public string GenreName { get; set; }
     }
 }

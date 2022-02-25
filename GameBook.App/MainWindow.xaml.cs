@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using GameBook.Lib;
+using GameBook.Lib.Model;
 
 namespace GameBook.App
 {
@@ -20,9 +23,18 @@ namespace GameBook.App
     /// </summary>
     public partial class MainWindow : Window
     {
+        public ObservableCollection<Game> Games { get; set; }
         public MainWindow()
         {
+            Init();
             InitializeComponent();
+            ListGames.ItemsSource = Games;
+        }
+        private void Init()
+        {
+            var db = new GameBookDb();
+            
+            Games = new ObservableCollection<Game>(db.GetAllGames());
         }
     }
 }
