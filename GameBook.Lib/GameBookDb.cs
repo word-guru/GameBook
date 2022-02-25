@@ -19,17 +19,6 @@ namespace GameBook.Lib
                 Connection = _db
             };
         }
-
-        public void Open()
-        {
-             _db.Open();
-        }
-
-        public void Close()
-        {
-             _db.Close();
-        }
-
         public List<Genre> GetAllGenres()
         {
              _db.OpenAsync();
@@ -59,7 +48,7 @@ namespace GameBook.Lib
             _db.OpenAsync();
 
             var games = new List<Game>();
-            _command.CommandText = "SELECT tab_games.id AS 'id', name, genre FROM tab_games JOIN tab_genres ON tab_games.id_genre = tab_genres.id;";
+            _command.CommandText = "SELECT tab_games.id AS 'id', name,id_genre, genre FROM tab_games JOIN tab_genres ON tab_games.id_genre = tab_genres.id;";
             var res =  _command.ExecuteReader();
             if (res.HasRows)
             {
@@ -69,6 +58,7 @@ namespace GameBook.Lib
                     {
                         Id=  res.GetInt32("id"),
                         Name =  res.GetString("name"),
+                        GenreId = res.GetInt32("id_genre"),
                         GenreName = res.GetString("genre")
                     });
                 }

@@ -24,6 +24,7 @@ namespace GameBook.App
     public partial class MainWindow : Window
     {
         public ObservableCollection<Game> Games { get; set; }
+        public ObservableCollection<Genre> Genres { get; set; }
         public MainWindow()
         {
             Init();
@@ -33,8 +34,18 @@ namespace GameBook.App
         private void Init()
         {
             var db = new GameBookDb();
-            
             Games = new ObservableCollection<Game>(db.GetAllGames());
+            Genres =new ObservableCollection<Genre>(db.GetAllGenres());
+        }
+
+        private void ListGames_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var game = ListGames.SelectedItem as Game;
+
+            InputId.Text = game.Id.ToString();
+            InputName.Text = game.Name;
+            InputGenre.ItemsSource = Genres;
+            InputGenre.SelectedIndex = game.GenreId;
         }
     }
 }
