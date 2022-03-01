@@ -51,7 +51,9 @@
                 <ComboBox x:Name="InputGenre"
                           Style="{DynamicResource StyleInput}">
                     <ComboBox.ItemTemplate>
-                        <DataTemplate></DataTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
             </StackPanel>

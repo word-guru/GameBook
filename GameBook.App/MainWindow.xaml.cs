@@ -45,7 +45,7 @@ namespace GameBook.App
             InputId.Text = game.Id.ToString();
             InputName.Text = game.Name;
             InputGenre.ItemsSource = Genres;
-            InputGenre.SelectedIndex = game.GenreId;
+            InputGenre.SelectedIndex = game.GenreId - 1;
         }
     }
 }
